@@ -1,6 +1,7 @@
 package main
 
 // To be used to rate limit in upcoming pub/sub project. Just rough ideas, not meant to be excellent code.
+//Idea here is to store an object and remove it when the time has passed.
 import (
 	"fmt"
 	"sync"
