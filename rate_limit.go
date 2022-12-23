@@ -34,7 +34,7 @@ func (c *Cache) evict() {
 		}
 		for key, val := range c.storage {
 			secs := time.Since(val.ttl).Seconds()
-			if secs >= 5 {
+			if secs >= 0 {
 				c.lock.Lock()
 				fmt.Printf("Deleting:  %v \n", key)
 				c.deletedStream = append(c.deletedStream, time.Now().Second())
@@ -56,8 +56,8 @@ func main() {
 
 	start := time.Now()
 	items = append(items, &Item{value: 3, name: "three", ttl: time.Now().Add(4 * time.Second)})
-	items = append(items, &Item{value: 4, name: "four", ttl: time.Now().Add(3 * time.Second)})
-	items = append(items, &Item{value: 5, name: "five", ttl: time.Now().Add(3 * time.Second)})
+	items = append(items, &Item{value: 4, name: "four", ttl: time.Now().Add(8 * time.Second)})
+	items = append(items, &Item{value: 5, name: "five", ttl: time.Now().Add(6 * time.Second)})
 	items = append(items, &Item{value: 6, name: "six", ttl: time.Now().Add(2 * time.Second)})
 
 	testCache := &Cache{
